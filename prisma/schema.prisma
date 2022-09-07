@@ -7,6 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum cardType {
+  credit
+  debit
+  both
+}
 
 model cards {
   id             Int      @id @default(autoincrement())
@@ -17,7 +22,7 @@ model cards {
   expirationDate String
   password       String
   isVirtual      Boolean
-  type           String
+  type           cardType
   createdAt      DateTime @default(now()) @db.Timestamp(6)
   users          users    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
