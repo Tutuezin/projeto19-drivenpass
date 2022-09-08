@@ -1,4 +1,7 @@
-import { conflictError } from "../middlewares/errorMiddleware";
+import {
+  conflictError,
+  unauthorizedError,
+} from "../middlewares/errorMiddleware";
 import bcrypt from "bcrypt";
 
 export async function encryptPassword(password: string) {
@@ -7,6 +10,10 @@ export async function encryptPassword(password: string) {
 
   return hashedPassword;
 }
-export function verifyEmail(emailExists: any) {
+export function verifyEmailExists(emailExists: any) {
   if (emailExists) throw conflictError("Email");
+}
+
+export function verifyEmailNotExists(emailExists: any) {
+  if (!emailExists) throw unauthorizedError("Email or password");
 }

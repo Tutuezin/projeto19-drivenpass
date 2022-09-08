@@ -16,7 +16,7 @@ export async function findEmailById(id: number) {
 export async function signUp(userData: authTypes.IUserData) {
   const emailExists = await authRepository.findEmail(userData.email);
 
-  authUtils.verifyEmail(emailExists);
+  authUtils.verifyEmailExists(emailExists);
 
   const hashedPassword = await authUtils.encryptPassword(userData.password);
 
@@ -27,5 +27,9 @@ export async function signUp(userData: authTypes.IUserData) {
 }
 
 export async function signIn(userData: authTypes.IUserData) {
-  console.log(userData);
+  const emailExists = await authRepository.findEmail(userData.email);
+
+  authUtils.verifyEmailNotExists(emailExists);
+
+  console.log(emailExists);
 }
