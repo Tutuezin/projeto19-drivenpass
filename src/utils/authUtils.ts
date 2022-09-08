@@ -17,3 +17,8 @@ export function verifyEmailExists(emailExists: any) {
 export function verifyEmailNotExists(emailExists: any) {
   if (!emailExists) throw unauthorizedError("Email or password");
 }
+
+export function checkPassword(password: string, hashedPassword: string) {
+  if (!bcrypt.compareSync(password, hashedPassword))
+    throw unauthorizedError("Email or password");
+}

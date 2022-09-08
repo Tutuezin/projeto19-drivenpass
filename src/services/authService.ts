@@ -31,5 +31,10 @@ export async function signIn(userData: authTypes.IUserData) {
 
   authUtils.verifyEmailNotExists(emailExists);
 
-  console.log(emailExists);
+  if (emailExists?.password) {
+    authUtils.checkPassword(userData.password, emailExists.password);
+  }
+
+  //console.log(userData.password);
+  //console.log(emailExists?.password);
 }
