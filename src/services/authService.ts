@@ -1,5 +1,3 @@
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import * as authTypes from "../types/authTypes";
 import * as authRepository from "../repositories/authRepository";
@@ -33,8 +31,7 @@ export async function signIn(userData: authTypes.IUserData) {
 
   if (emailExists?.password) {
     authUtils.checkPassword(userData.password, emailExists.password);
+    const token = authUtils.generateToken(emailExists);
+    return token;
   }
-
-  //console.log(userData.password);
-  //console.log(emailExists?.password);
 }
