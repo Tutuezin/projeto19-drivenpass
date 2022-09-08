@@ -13,7 +13,7 @@ export async function findEmailById(id: number) {
   return user;
 }
 
-export async function signUp(userData: authTypes.ICreateUser) {
+export async function signUp(userData: authTypes.IUserData) {
   const emailExists = await authRepository.findEmail(userData.email);
 
   authUtils.verifyEmail(emailExists);
@@ -24,4 +24,8 @@ export async function signUp(userData: authTypes.ICreateUser) {
     email: userData.email,
     password: hashedPassword,
   });
+}
+
+export async function signIn(userData: authTypes.IUserData) {
+  console.log(userData);
 }

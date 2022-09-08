@@ -13,6 +13,6 @@ export async function findEmail(email: string) {
   return result;
 }
 
-export async function createUser(user: authTypes.ICreateUser) {
+export async function createUser(user: authTypes.IUserData) {
   await prisma.users.create({ data: user });
 }
