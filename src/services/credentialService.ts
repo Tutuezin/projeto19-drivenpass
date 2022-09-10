@@ -12,9 +12,12 @@ export async function createCredential(
     credential.credentialTitle
   );
 
-  console.log(credentialTitleExists);
-
   credentialUtils.verifyCredentialTitleExists(credentialTitleExists);
 
-  await credentialRepository.createCredential(userId, credential);
+  const hashedPassword = await authUtils.encryptPassword(credential.password);
+
+  await credentialRepository.createCredential(userId, {
+    ...credential,
+    password: hashedPassword,
+  });
 }

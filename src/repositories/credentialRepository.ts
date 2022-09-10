@@ -1,3 +1,4 @@
+import { ChildProcess } from "child_process";
 import { prisma } from "../config/database";
 import * as credentialTypes from "../types/credentialTypes";
 
@@ -9,6 +10,8 @@ export async function createCredential(
     userId,
     ...credential,
   };
+
+  console.log(credentialInfo);
 
   await prisma.credentials.create({ data: credentialInfo });
 }
