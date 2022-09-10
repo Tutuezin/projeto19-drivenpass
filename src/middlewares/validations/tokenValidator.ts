@@ -11,19 +11,18 @@ export async function validateToken(
   next: NextFunction
 ) {
   const { authorization } = req.headers;
-  const token = authorization?.replace("Bearer ", "").trim();
+  const token = authorization?.replace("Bearer ", "");
   const secretKey = process.env.JWT_SECRET;
 
   if (secretKey === undefined || token === undefined) {
-    throw missingHeaderError("Invalid request header");
+    throw missingHeaderError("Header is missing");
   }
-  const user = jwt.verify(token, secretKey);
 
-  if (!user) {
+  try {
+    const user = jwt.verify(token, secretKey);
+    res.locals.user = user;
+    next();
+  } catch {
     throw unauthorizedError("Token");
   }
-
-  res.locals.user = user;
-
-  next();
 }
