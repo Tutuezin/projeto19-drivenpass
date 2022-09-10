@@ -10,8 +10,6 @@ export async function createCredential(
     ...credential,
   };
 
-  console.log(credentialInfo);
-
   await prisma.credentials.create({ data: credentialInfo });
 }
 

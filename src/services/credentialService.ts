@@ -14,12 +14,12 @@ export async function createCredential(
 
   credentialUtils.verifyCredentialTitleExists(credentialTitleExists);
 
-  //const hashedPassword = await authUtils.encryptPassword(credential.password);
+  const hashedPassword = cryptoUtils.encryptData(credential.password);
 
-  // await credentialRepository.createCredential(userId, {
-  //   ...credential,
-  //   password: hashedPassword,
-  // });
+  await credentialRepository.createCredential(userId, {
+    ...credential,
+    password: hashedPassword,
+  });
 }
 
 export async function getAllsCredentials(userId: number) {
