@@ -2,7 +2,22 @@ import { prisma } from "../config/database";
 import * as credentialTypes from "../types/credentialTypes";
 
 export async function createCredential(
+  userId: number,
   credential: credentialTypes.ICreateCredentialData
 ) {
-  //await prisma.credentials.create({data: credential})
+  const credentialInfo = {
+    userId,
+    ...credential,
+  };
+
+  await prisma.credentials.create({ data: credentialInfo });
+}
+
+export async function findTitleCredential(
+  userId: number,
+  credentialTitle: string
+) {
+  return await prisma.credentials.findFirst({
+    where: { userId, credentialTitle },
+  });
 }

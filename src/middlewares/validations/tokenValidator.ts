@@ -20,7 +20,9 @@ export async function validateToken(
 
   try {
     const user = jwt.verify(token, secretKey);
+
     res.locals.user = user;
+
     next();
   } catch {
     throw unauthorizedError("Token");
