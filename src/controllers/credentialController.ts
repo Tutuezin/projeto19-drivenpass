@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
+import * as credentialService from "../services/credentialService";
 
 export async function createCredentials(req: Request, res: Response) {
-  const teste = req.body;
+  const credential = req.body;
 
-  console.log(teste);
+  await credentialService.createCredential(credential);
 
   res.status(201).send("Credential created!");
 }
