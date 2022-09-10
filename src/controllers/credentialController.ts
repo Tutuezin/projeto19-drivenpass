@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import * as credentialService from "../services/credentialService";
+import * as cryptoUtils from "../utils/cryptoUtils";
 
 export async function createCredential(req: Request, res: Response) {
   const credential = req.body;
@@ -13,7 +14,7 @@ export async function createCredential(req: Request, res: Response) {
 export async function getAllCredentials(req: Request, res: Response) {
   const { user } = res.locals;
 
-  const allCredentials = await credentialService.getAllsCredentials(user.id);
+  const credentialsList = await credentialService.getAllsCredentials(user.id);
 
-  res.status(200).send(allCredentials);
+  res.status(200).send(credentialsList);
 }

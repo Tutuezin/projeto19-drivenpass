@@ -23,5 +23,13 @@ export async function createCredential(
 }
 
 export async function getAllsCredentials(userId: number) {
-  return credentialRepository.getAllCredentials(userId);
+  const credentialsList = await credentialRepository.getAllCredentials(userId);
+
+  for (let i = 0; i < credentialsList.length; i++) {
+    const element = credentialsList[i];
+
+    element.password = cryptoUtils.decryptData(element.password);
+  }
+
+  return credentialsList;
 }
