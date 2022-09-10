@@ -1,4 +1,4 @@
-import * as authUtils from "../utils/authUtils";
+import * as cryptoUtils from "../utils/cryptoUtils";
 import * as credentialUtils from "../utils/credentialUtils";
 import * as credentialTypes from "../types/credentialTypes";
 import * as credentialRepository from "../repositories/credentialRepository";
@@ -14,10 +14,14 @@ export async function createCredential(
 
   credentialUtils.verifyCredentialTitleExists(credentialTitleExists);
 
-  const hashedPassword = await authUtils.encryptPassword(credential.password);
+  //const hashedPassword = await authUtils.encryptPassword(credential.password);
 
-  await credentialRepository.createCredential(userId, {
-    ...credential,
-    password: hashedPassword,
-  });
+  // await credentialRepository.createCredential(userId, {
+  //   ...credential,
+  //   password: hashedPassword,
+  // });
+}
+
+export async function getAllsCredentials(userId: number) {
+  return credentialRepository.getAllCredentials(userId);
 }

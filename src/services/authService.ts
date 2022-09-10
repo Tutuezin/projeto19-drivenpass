@@ -1,6 +1,7 @@
 import * as authTypes from "../types/authTypes";
 import * as authRepository from "../repositories/authRepository";
 import * as authUtils from "../utils/authUtils";
+import * as cryptoUtils from "../utils/cryptoUtils";
 
 export async function findEmailById(id: number) {
   const user = await authRepository.findEmailById(id);
@@ -13,7 +14,9 @@ export async function signUp(userData: authTypes.IUserData) {
 
   authUtils.verifyEmailExists(emailExists);
 
-  const hashedPassword = await authUtils.encryptPassword(userData.password);
+  const hashedPassword = await cryptoUtils.encryptMasterPassword(
+    userData.password
+  );
 
   await authRepository.createUser({
     email: userData.email,
@@ -27,7 +30,7 @@ export async function signIn(userData: authTypes.IUserData) {
   authUtils.verifyEmailNotExists(emailExists);
 
   if (emailExists?.password) {
-    authUtils.checkPassword(userData.password, emailExists.password);
+    cryptoUtils.checkPassword(userData.password, emailExists.password);
     const token = authUtils.generateToken(emailExists);
     return token;
   }

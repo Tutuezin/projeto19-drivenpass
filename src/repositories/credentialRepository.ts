@@ -1,4 +1,3 @@
-import { ChildProcess } from "child_process";
 import { prisma } from "../config/database";
 import * as credentialTypes from "../types/credentialTypes";
 
@@ -22,5 +21,18 @@ export async function findTitleCredential(
 ) {
   return await prisma.credentials.findFirst({
     where: { userId, credentialTitle },
+  });
+}
+
+export async function getAllCredentials(userId: number) {
+  return await prisma.credentials.findMany({
+    where: { userId },
+    select: {
+      url: true,
+      credentialTitle: true,
+      username: true,
+      password: true,
+      createdAt: true,
+    },
   });
 }
