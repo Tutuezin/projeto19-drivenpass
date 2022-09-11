@@ -18,15 +18,15 @@ export async function getAllWifis(req: Request, res: Response) {
   res.status(200).send(wifis);
 }
 
-/* export async function getNoteById(req: Request, res: Response) {
+export async function getWifiById(req: Request, res: Response) {
   const { user } = res.locals;
   const id = Number(req.params.id);
 
-  const note = await noteService.getNoteById(user.id, id);
+  const wifi = await wifiService.getWifiById(user.id, id);
 
-  res.status(200).send(note);
+  res.status(200).send(wifi);
 }
- */
+
 /* export async function deleteNote(req: Request, res: Response) {
   const { user } = res.locals;
   const id = Number(req.params.id);

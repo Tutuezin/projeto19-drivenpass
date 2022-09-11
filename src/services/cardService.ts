@@ -47,8 +47,6 @@ export async function getCardById(userId: number, id: number) {
     };
     return cardById;
   }
-
-  return card;
 }
 
 export async function deleteCard(id: number) {

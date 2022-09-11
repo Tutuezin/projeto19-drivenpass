@@ -26,17 +26,18 @@ export async function getAllWifis(userId: number) {
   });
 }
 
-/* export async function getNoteById(userId: number, id: number) {
-  return await prisma.safeNotes.findFirst({
+export async function getWifiById(userId: number, id: number) {
+  return await prisma.wifi.findFirst({
     where: { userId, id },
     select: {
       id: true,
-      noteTitle: true,
-      text: true,
+      wifiTitle: true,
+      name: true,
+      password: true,
       createdAt: true,
     },
   });
-} */
+}
 
 /* export async function deleteNote(id: number) {
   return await prisma.safeNotes.delete({ where: { id } });

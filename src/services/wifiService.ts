@@ -27,13 +27,20 @@ export async function getAllWifis(userId: number) {
   return wifiList;
 }
 
-/* export async function getNoteById(userId: number, id: number) {
-  const note = await noteRepository.getNoteById(userId, id);
+export async function getWifiById(userId: number, id: number) {
+  const wifi = await wifiRepository.getWifiById(userId, id);
 
-  noteUtils.verifyNoteExists(note);
+  wifiUtils.verifyWifiExists(wifi);
 
-  return note;
-} */
+  if (wifi) {
+    const decryptedPassword = cryptoUtils.decryptData(wifi?.password);
+    const wifiById = {
+      ...wifi,
+      password: decryptedPassword,
+    };
+    return wifiById;
+  }
+}
 
 /* export async function deleteNote(id: number) {
   return await noteRepository.deleteNote(id);

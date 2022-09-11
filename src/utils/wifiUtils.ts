@@ -6,7 +6,6 @@ export function verifyWifiTitleExists(wifiTitleExists: wifi | null) {
   if (wifiTitleExists) throw conflictError("This note title");
 }
 
-export function verifyWifiExists(wifiExists: any) {
-  console.log(wifiExists);
+export function verifyWifiExists(wifiExists: wifiTypes.IWifiData | null) {
   if (!wifiExists) throw notFoundError("wifi");
 }
