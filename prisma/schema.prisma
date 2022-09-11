@@ -64,6 +64,7 @@ model wifi {
   userId    Int
   wifiTitle String   @db.VarChar(50)
   name      String
+  password  String
   createdAt DateTime @default(now()) @db.Timestamp(6)
   users     users    @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }

@@ -1,0 +1,40 @@
+import * as wifiRepository from "../repositories/wifiRepository";
+import * as wifiTypes from "../types/wifiTypes";
+import * as wifiUtils from "../utils/wifiUtils";
+import * as cryptoUtils from "../utils/cryptoUtils";
+
+export async function createWifi(
+  userId: number,
+  wifi: wifiTypes.ICreateWifiData
+) {
+  const hashedPassword = cryptoUtils.encryptData(wifi.password);
+
+  await wifiRepository.createWifi(userId, {
+    ...wifi,
+    password: hashedPassword,
+  });
+}
+
+export async function getAllWifis(userId: number) {
+  const wifiList = await wifiRepository.getAllWifis(userId);
+
+  for (let i = 0; i < wifiList.length; i++) {
+    const element = wifiList[i];
+
+    element.password = cryptoUtils.decryptData(element.password);
+  }
+
+  return wifiList;
+}
+
+/* export async function getNoteById(userId: number, id: number) {
+  const note = await noteRepository.getNoteById(userId, id);
+
+  noteUtils.verifyNoteExists(note);
+
+  return note;
+} */
+
+/* export async function deleteNote(id: number) {
+  return await noteRepository.deleteNote(id);
+} */
