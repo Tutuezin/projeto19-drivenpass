@@ -17,6 +17,6 @@ noteRouter.get("/notes", validateToken, noteController.getAllNotes);
 
 noteRouter.get("/note/:id", validateToken, noteController.getNoteById);
 
-noteRouter.delete("/note/delete/:id", validateToken);
+noteRouter.delete("/note/delete/:id", validateToken, noteController.deleteNote);
 
 export default noteRouter;

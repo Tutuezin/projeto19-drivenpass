@@ -31,5 +31,8 @@ export async function deleteNote(req: Request, res: Response) {
   const { user } = res.locals;
   const id = Number(req.params.id);
 
+  await noteService.getNoteById(user.id, id);
+  await noteService.deleteNote(id);
+
   res.status(200).send(`Note with id ${id} has been removed!`);
 }

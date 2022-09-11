@@ -50,6 +50,6 @@ export async function getCredentialById(userId: number, id: number) {
   throw notFoundError("credential");
 }
 
-export async function deleteCredential(userId: number, id: number) {
-  return await credentialRepository.deleteCredential(userId, id);
+export async function deleteCredential(id: number) {
+  return await credentialRepository.deleteCredential(id);
 }

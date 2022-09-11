@@ -50,6 +50,6 @@ export async function getCredentialById(userId: number, id: number) {
   });
 }
 
-export async function deleteCredential(userId: number, id: number) {
+export async function deleteCredential(id: number) {
   return await prisma.credentials.delete({ where: { id } });
 }

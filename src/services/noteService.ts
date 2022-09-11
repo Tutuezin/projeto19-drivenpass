@@ -27,3 +27,7 @@ export async function getNoteById(userId: number, id: number) {
 
   return note;
 }
+
+export async function deleteNote(id: number) {
+  return await noteRepository.deleteNote(id);
+}
