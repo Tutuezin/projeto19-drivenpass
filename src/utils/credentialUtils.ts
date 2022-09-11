@@ -1,5 +1,5 @@
 import { conflictError } from "../middlewares/errorMiddleware";
 
-export function verifyCredentialTitleExists(credentialTagExists: any) {
-  if (credentialTagExists) throw conflictError("This credential title");
+export function verifyCredentialTitleExists(credentialTitleExists: any) {
+  if (credentialTitleExists) throw conflictError("This credential title");
 }
