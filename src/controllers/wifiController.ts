@@ -27,12 +27,12 @@ export async function getWifiById(req: Request, res: Response) {
   res.status(200).send(wifi);
 }
 
-/* export async function deleteNote(req: Request, res: Response) {
+export async function deleteWifi(req: Request, res: Response) {
   const { user } = res.locals;
   const id = Number(req.params.id);
 
-  await noteService.getNoteById(user.id, id);
-  await noteService.deleteNote(id);
+  await wifiService.getWifiById(user.id, id);
+  await wifiService.deleteWifi(id);
 
-  res.status(200).send(`Note with id ${id} has been removed!`);
-} */
+  res.status(200).send(`Wifi with id ${id} has been removed!`);
+}

@@ -39,6 +39,6 @@ export async function getWifiById(userId: number, id: number) {
   });
 }
 
-/* export async function deleteNote(id: number) {
-  return await prisma.safeNotes.delete({ where: { id } });
-} */
+export async function deleteWifi(id: number) {
+  return await prisma.wifi.delete({ where: { id } });
+}

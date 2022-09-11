@@ -42,6 +42,6 @@ export async function getWifiById(userId: number, id: number) {
   }
 }
 
-/* export async function deleteNote(id: number) {
-  return await noteRepository.deleteNote(id);
-} */
+export async function deleteWifi(id: number) {
+  return await wifiRepository.deleteWifi(id);
+}
