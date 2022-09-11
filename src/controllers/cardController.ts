@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
+import * as cardService from "../services/cardService";
 
 export async function createCard(req: Request, res: Response) {
   const card = req.body;
   const { user } = res.locals;
 
-  console.log(card);
+  await cardService.createCard(user.id, card);
 
   res.status(201).send("Card created!");
 }
@@ -12,7 +13,9 @@ export async function createCard(req: Request, res: Response) {
 export async function getAllCards(req: Request, res: Response) {
   const { user } = res.locals;
 
-  res.status(200).send("");
+  const cards = await cardService.getAllCards(user.id);
+
+  res.status(200).send(cards);
 }
 
 export async function getCardById(req: Request, res: Response) {
