@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Tutuezin/projeto19-drivenpass#readme",
   "dependencies": {
+    "@joi/date": "^2.1.0",
     "@prisma/client": "^4.3.1",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",

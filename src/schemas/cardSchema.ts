@@ -1,4 +1,7 @@
-import joi from "joi";
+import Joi from "joi";
+import DateExtension from "@joi/date";
+
+const joi = Joi.extend(DateExtension);
 
 export const createCard = joi.object({
   cardTitle: joi.string().required(),
@@ -11,7 +14,7 @@ export const createCard = joi.object({
     .string()
     .pattern(/^[0-9]{3}$/)
     .required(),
-  expirationDate: joi.string().required(),
+  expirationDate: joi.string().format("MM/YY").required(),
   password: joi.string().required(),
   isVirtual: joi.boolean().required(),
   type: joi.string().valid("credit", "debit", "both").required(),
