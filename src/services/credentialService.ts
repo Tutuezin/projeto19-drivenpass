@@ -49,3 +49,7 @@ export async function getCredentialById(userId: number, id: number) {
 
   throw notFoundError("credential");
 }
+
+export async function deleteCredential(userId: number, id: number) {
+  return await credentialRepository.deleteCredential(userId, id);
+}
