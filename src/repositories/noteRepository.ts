@@ -30,3 +30,15 @@ export async function getAllNotes(userId: number) {
     },
   });
 }
+
+export async function getNoteById(userId: number, id: number) {
+  return await prisma.safeNotes.findFirst({
+    where: { userId, id },
+    select: {
+      id: true,
+      noteTitle: true,
+      text: true,
+      createdAt: true,
+    },
+  });
+}

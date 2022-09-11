@@ -15,7 +15,7 @@ noteRouter.post(
 
 noteRouter.get("/notes", validateToken, noteController.getAllNotes);
 
-noteRouter.get("/note/:id", validateToken);
+noteRouter.get("/note/:id", validateToken, noteController.getNoteById);
 
 noteRouter.delete("/note/delete/:id", validateToken);
 

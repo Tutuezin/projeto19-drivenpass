@@ -13,7 +13,7 @@ export async function createNote(req: Request, res: Response) {
 export async function getAllNotes(req: Request, res: Response) {
   const { user } = res.locals;
 
-  const notes = await noteService.getAllsNotes(user.id);
+  const notes = await noteService.getAllNotes(user.id);
 
   res.status(200).send(notes);
 }
@@ -22,7 +22,9 @@ export async function getNoteById(req: Request, res: Response) {
   const { user } = res.locals;
   const id = Number(req.params.id);
 
-  res.status(200).send();
+  const note = await noteService.getNoteById(user.id, id);
+
+  res.status(200).send(note);
 }
 
 export async function deleteNote(req: Request, res: Response) {
