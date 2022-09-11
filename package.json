@@ -2,9 +2,11 @@
   "name": "projeto19-drivenpass",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/app.ts",
   "scripts": {
-    "dev": "nodemon src/app.ts"
+    "build": "tsc && npx prisma migrate deploy",
+    "start": "node ./dist/app.js",
+    "dev": "nodemon ./src/app.ts"
   },
   "repository": {
     "type": "git",
