@@ -2,6 +2,7 @@ import * as cryptoUtils from "../utils/cryptoUtils";
 import * as credentialUtils from "../utils/credentialUtils";
 import * as credentialTypes from "../types/credentialTypes";
 import * as credentialRepository from "../repositories/credentialRepository";
+import { notFoundError } from "../middlewares/errorMiddleware";
 
 export async function createCredential(
   userId: number,
@@ -32,4 +33,19 @@ export async function getAllsCredentials(userId: number) {
   }
 
   return credentialsList;
+}
+
+export async function getCredentialById(userId: number, id: number) {
+  const credential = await credentialRepository.getCredentialById(userId, id);
+
+  if (credential) {
+    const decryptedPassword = cryptoUtils.decryptData(credential?.password);
+    const credentialById = {
+      ...credential,
+      password: decryptedPassword,
+    };
+    return credentialById;
+  }
+
+  throw notFoundError("credential");
 }

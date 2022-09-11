@@ -4,19 +4,25 @@ import { validateToken } from "../middlewares/validations/tokenValidator";
 import { createCredential } from "../schemas/credentialSchema";
 import * as credentialsController from "../controllers/credentialController";
 
-const credentialsRouter = Router();
+const credentialRouter = Router();
 
-credentialsRouter.post(
+credentialRouter.post(
   "/credential/create",
   validateToken,
   validateSchema(createCredential),
   credentialsController.createCredential
 );
 
-credentialsRouter.get(
+credentialRouter.get(
   "/credentials",
   validateToken,
   credentialsController.getAllCredentials
 );
 
-export default credentialsRouter;
+credentialRouter.get(
+  "/credentials/:id",
+  validateToken,
+  credentialsController.getCredentialById
+);
+
+export default credentialRouter;
