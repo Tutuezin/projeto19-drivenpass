@@ -17,6 +17,7 @@ model cards {
   id             Int      @id @default(autoincrement())
   userId         Int
   cardTitle      String
+  cardHolderName String
   cardNumber     String
   securityCode   String
   expirationDate String
