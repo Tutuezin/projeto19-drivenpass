@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
+import { ObjectSchema } from "joi";
 import { unprocessableError } from "../errorMiddleware";
-import Joi, { ObjectSchema } from "joi";
 
 export function validateSchema(schema: ObjectSchema) {
   return (req: Request, res: Response, next: NextFunction) => {
