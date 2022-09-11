@@ -13,7 +13,9 @@ export async function createNote(req: Request, res: Response) {
 export async function getAllNotes(req: Request, res: Response) {
   const { user } = res.locals;
 
-  res.status(200).send();
+  const notes = await noteService.getAllsNotes(user.id);
+
+  res.status(200).send(notes);
 }
 
 export async function getNoteById(req: Request, res: Response) {

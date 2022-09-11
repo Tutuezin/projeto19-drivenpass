@@ -18,3 +18,15 @@ export async function findTitleNote(userId: number, noteTitle: string) {
     where: { userId, noteTitle },
   });
 }
+
+export async function getAllNotes(userId: number) {
+  return await prisma.safeNotes.findMany({
+    where: { userId },
+    select: {
+      id: true,
+      noteTitle: true,
+      text: true,
+      createdAt: true,
+    },
+  });
+}

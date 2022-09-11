@@ -15,3 +15,7 @@ export async function createNote(
 
   await noteRepository.createNote(userId, note);
 }
+
+export async function getAllsNotes(userId: number) {
+  return await noteRepository.getAllNotes(userId);
+}

@@ -13,7 +13,7 @@ noteRouter.post(
   noteController.createNote
 );
 
-noteRouter.get("/notes", validateToken);
+noteRouter.get("/notes", validateToken, noteController.getAllNotes);
 
 noteRouter.get("/note/:id", validateToken);
 
