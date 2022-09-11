@@ -34,15 +34,23 @@ export async function getAllCards(userId: number) {
   return cardList;
 }
 
-/* port async function getNoteById(userId: number, id: number) {
-  const note = await noteRepository.getNoteById(userId, id);
+export async function getCardById(userId: number, id: number) {
+  const card = await cardRepository.getCardById(userId, id);
 
-  noteUtils.verifyNoteExists(note);
+  cardUtils.verifyCardExists(card);
 
-  return note;
-} */
+  if (card) {
+    const decryptedPassword = cryptoUtils.decryptData(card?.password);
+    const cardById = {
+      ...card,
+      password: decryptedPassword,
+    };
+    return cardById;
+  }
 
-/* export async function deleteNote(id: number) {
-  return await noteRepository.deleteNote(id);
+  return card;
 }
-  */
+
+export async function deleteCard(id: number) {
+  return await cardRepository.deleteCard(id);
+}

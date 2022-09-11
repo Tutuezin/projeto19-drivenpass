@@ -35,19 +35,22 @@ export async function getAllCards(userId: number) {
   });
 }
 
-/* export async function getNoteById(userId: number, id: number) {
-  return await prisma.safeNotes.findFirst({
+export async function getCardById(userId: number, id: number) {
+  return await prisma.cards.findFirst({
     where: { userId, id },
     select: {
       id: true,
-      noteTitle: true,
-      text: true,
-      createdAt: true,
+      cardTitle: true,
+      cardHolderName: true,
+      cardNumber: true,
+      securityCode: true,
+      expirationDate: true,
+      password: true,
+      type: true,
     },
   });
-} */
-
-/* export async function deleteNote(id: number) {
-  return await prisma.safeNotes.delete({ where: { id } });
 }
-  */
+
+export async function deleteCard(id: number) {
+  return await prisma.cards.delete({ where: { id } });
+}

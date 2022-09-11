@@ -22,15 +22,17 @@ export async function getCardById(req: Request, res: Response) {
   const { user } = res.locals;
   const id = Number(req.params.id);
 
-  res.status(200).send("");
+  const card = await cardService.getCardById(user.id, id);
+
+  res.status(200).send(card);
 }
 
 export async function deleteCard(req: Request, res: Response) {
   const { user } = res.locals;
   const id = Number(req.params.id);
 
-  // await noteService.getNoteById(user.id, id);
-  // await noteService.deleteNote(id);
+  await cardService.getCardById(user.id, id);
+  await cardService.deleteCard(id);
 
   res.status(200).send(`Card with id ${id} has been removed!`);
 }
